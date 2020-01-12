@@ -1,0 +1,53 @@
+.tabs
+{
+	position:relative;
+	
+}
+
+
+
+.tabclass, .labelClass
+{
+	display:inline-block;
+}
+
+
+.tabclass input[type = "radio"] {
+	display: none;
+	
+}
+.labelClass
+{
+	background: white;
+	padding:5px 10px;
+	
+}
+
+
+.tab-content
+{
+	position:absolute;
+	left:0;
+	width: calc(100%- 20px);
+	display: none;
+}
+
+.tabclass :checked + .labelClass
+{
+	position: relative;
+	background : black;
+	color: white;
+}
+.tabclass :checked ~ .tab-content
+{
+	display:block;
+}
+	
+	
+#thintext
+{
+	color:red;
+	font-style: italic;
+	font-weight: normal;
+	
+}

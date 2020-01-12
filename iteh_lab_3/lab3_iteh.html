@@ -1,0 +1,126 @@
+<htlm><head>
+    <title> задание #6</title>
+    
+    <meta charset=utf-8>
+    </head>	
+    <script>
+    function get_result(obj)
+    {var a=[]
+    a[0]=obj.kat1.value;
+    a[1]=obj.kat2.value;
+    a[2]=obj.kat3.value;
+    a[3]=obj.kat4.value;
+    a[4]=obj.kat5.value;
+    a[5]=obj.kat6.value;
+
+    var b=[]
+    b[0]=obj.fam1.value;
+    b[1]=obj.fam2.value;
+    b[2]=obj.fam3.value;
+    b[3]=obj.fam4.value;
+    b[4]=obj.fam5.value;
+    b[5]=obj.fam6.value;
+    
+    nice=0;
+    norm=0;
+    notbad=0;
+    bad=0;
+    
+    snice=[];
+    snorm=[];
+    snotbad=[];
+    sbad=[];
+
+    for (i=0; i<=5; i++)
+    {if (a[i]=="Отличники") {nice++; snice.push(b[i])} else 
+    {if (a[i]=="Неуспевающие") {bad++; sbad.push(b[i])} else
+    {if (a[i]=="Успевающие") {notbad++; snotbad.push(b[i])} else 
+    
+    {norm++; snorm.push(b[i])}}}};
+
+    
+    obj.st0.value=nice;
+    obj.st1.value=norm;
+    obj.st2.value=notbad;
+    obj.st3.value=bad;
+
+    obj.stnice.value=snice.join("\n");
+    obj.stnorm.value=snorm.join("\n");
+    obj.stnotbad.value=snotbad.join("\n");
+    obj.stbad.value=sbad.join("\n");
+    }
+    
+    
+    function check_input(obj)
+    {
+    if (obj.fam1.value.length<2 || obj.fam2.value.length<2 || obj.fam3.value.length<2||
+    obj.fam4.value.length<2 || obj.fam5.value.length<2 || obj.fam6.value.length<2) {alert("Проверьте, заполнены ли все поля с фамилиями....")} else {return true}	
+    }
+    
+    
+    function check(mark)
+    {return (mark>=2 && mark<6);	
+    }
+    
+    function check_user(obj,obj1)
+    {
+    var 
+    mrks=[];	
+    pos=0;
+    
+    for (i=0; i<obj.value.length; i++) {if (check(obj.value[i])) {mrks[pos]=obj.value[i]; pos++;} }; //Заполнение массива оценок
+    
+    if (pos<5) {alert("Где-то не хватает оценок....")} else 
+    {if (mrks[0]==5 && mrks[1]==5 && mrks[2]==5 && mrks[3]==5 && mrks[4]==5) {obj1.value="Отличники"} else
+    {if (mrks[0]==2 || mrks[1]==2 || mrks[2]==2 || mrks[3]==2 || mrks[4]==2) {obj1.value="Неуспевающие"} else
+    {if (mrks[0]==3 || mrks[1]==3 || mrks[2]==3 || mrks[3]==3 || mrks[4]==3) {obj1.value="Успевающие"} else
+    {obj1.value="Хорошисты"}}}}
+    }
+    
+    function go()
+    { 
+    if (check_input(form1)) {
+    check_user(form1.marks1,form1.kat1); 
+    check_user(form1.marks2,form1.kat2); 
+    check_user(form1.marks3,form1.kat3); 
+    check_user(form1.marks4,form1.kat4); 
+    check_user(form1.marks5,form1.kat5); 
+    check_user(form1.marks6,form1.kat6);
+    
+    get_result(form1)} 
+    }
+    
+    </script>
+    <body>
+    <form name=form1>
+    <h3>Форма успеваемости:</h3>
+    <table>
+    <tr align=center bgcolor=#AAAAAA><td width=30>#</td><td>Фамилия: </td><td width=200>Оценки за сессию: </td><td width=200>Категория студента:</td><tr>
+    <tr bgcolor=#EEEEEE><td><center>1</td><td><input type=text length=30 name=fam1></td><td><input type=text style="width: 200px;" name=marks1></td><td><input type=text style="width: 200px; border: none;" name=kat1 value='нет данных для отображения' disabled></td><tr>	
+    <tr bgcolor=#EEEEEE><td><center>2</td><td><input type=text length=30 name=fam2></td><td><input type=text style="width: 200px;" name=marks2></td><td><input type=text style="width: 200px; border: none;" name=kat2 value='нет данных для отображения' disabled></td><tr>
+    <tr bgcolor=#EEEEEE><td><center>3</td><td><input type=text length=30 name=fam3></td><td><input type=text style="width: 200px;" name=marks3></td><td><input type=text style="width: 200px; border: none;" name=kat3 value='нет данных для отображения' disabled></td><tr>
+    <tr bgcolor=#EEEEEE><td><center>4</td><td><input type=text length=30 name=fam4></td><td><input type=text style="width: 200px;" name=marks4></td><td><input type=text style="width: 200px; border: none;" name=kat4 value='нет данных для отображения' disabled></td><tr>
+    <tr bgcolor=#EEEEEE><td><center>5</td><td><input type=text length=30 name=fam5></td><td><input type=text style="width: 200px;" name=marks5></td><td><input type=text style="width: 200px; border: none;" name=kat5 value='нет данных для отображения' disabled></td><tr>
+    <tr bgcolor=#EEEEEE><td><center>6</td><td><input type=text length=30 name=fam6></td><td><input type=text style="width: 200px;" name=marks6></td><td><input type=text style="width: 200px; border: none;" name=kat6 value='нет данных для отображения' disabled></td><tr>
+    </table>
+    
+    
+    <h3>Статистика студентов по категориям:</h3>
+    <table width=400 >
+    <tr align=center bgcolor=#AAAAAA><td>Отличников:</td><td>Хорошистов: </td><td>Успевающих</td> <td>Неуспевающих:</td>
+    <tr align=center bgcolor=#EEEEEE><td><input type=text style="width: 20px; border: none;" name=st0 value='0' disabled></td>
+    <td><input type=text style="width: 20px; border: none;" name=st1 value='0' disabled></td>
+    <td><input type=text style="width: 20px; border: none;" name=st2 value='0' disabled></td>
+    <td><input type=text style="width: 20px; border: none;" name=st3 value='0' disabled></td>
+    <tr align=center bgcolor=#EEEEEE></tr>
+    <td><textarea rows="6" style="width: 100px; border: none;" name=stnice  disabled readonly></textarea></td>
+    <td><textarea rows="6" style="width: 100px; border: none;" name=stnorm  disabled readonly></textarea></td>
+    <td><textarea rows="6" style="width: 100px; border: none;" name=stnotbad  disabled readonly></textarea></td>
+    <td><textarea rows="6" style="width: 110px; border: none;" name=stbad  disabled readonly></textarea></td>
+    </table>	
+    <hr width=400 align=left>
+    Каждый студент должен иметь 5 оценок<br>
+    <input type=button value='Провести расчеты' OnClick='go()'> <input type=reset value='Очистить все.'>
+    </form>
+    </body>
+    </html>
